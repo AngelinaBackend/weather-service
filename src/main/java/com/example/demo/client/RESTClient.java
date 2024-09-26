@@ -1,4 +1,4 @@
-package com.example.demo.Client;
+package com.example.demo.client;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +37,13 @@ public class RESTClient {
                 if (main != null && main.get("temp") != null) {
                     return (double) main.get("temp");
                 } else {
-                    throw new RuntimeException("Ошибка извлечения температуры из ответа REST API");
+                    throw new RuntimeException("Error extracting temperature from REST API response");
                 }
             } else {
-                throw new RuntimeException("Некорректный ответ от REST API: " + response.getStatusCode());
+                throw new RuntimeException("Invalid response from REST API: " + response.getStatusCode());
             }
         } catch (Exception e) {
-            throw new RuntimeException("Ошибка при запросе к REST API: " + e.getMessage());
+            throw new RuntimeException("Error while making request to REST API: " + e.getMessage());
         }
     }
 }

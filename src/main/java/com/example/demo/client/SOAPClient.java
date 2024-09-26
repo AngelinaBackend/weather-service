@@ -1,4 +1,4 @@
-package com.example.demo.Client;
+package com.example.demo.client;
 
 
 import org.springframework.beans.factory.annotation.Value;
@@ -28,9 +28,9 @@ public class SOAPClient {
 
         String responsePayload = (String) webServiceTemplate
                 .marshalSendAndReceive(soapUrl, requestPayload,
-                        new SoapActionCallback("http://./GetTemperature"));
+                        new SoapActionCallback("http://name_soap_service/GetTemperature"));
 
-        return 22.00;
+        return parseTemperatureFromResponse(responsePayload);
     }
 
     private double parseTemperatureFromResponse(String response) {
@@ -46,7 +46,7 @@ public class SOAPClient {
 
             return Double.parseDouble(temperatureValue);
         } catch (Exception e) {
-            throw new RuntimeException("Ошибка при парсинге ответа SOAP: : " + e.getMessage(), e);
+            throw new RuntimeException("Error parsing SOAP response: " + e.getMessage(), e);
         }
     }
 }
